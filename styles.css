@@ -15,32 +15,6 @@ body {
   padding: 20px 10px 14px 10px;
   margin-bottom: 2px;
 }
-@media print {
-  /* Hide inputs and Print button while printing */
-  .edit-info input,
-  #print-btn,
-  .print-button-container {
-    display: none !important;
-  }
-
-  /* Show values as normal text - inputs will be replaced by spans in JS */
-}
-@media print {
-  /* Hide inputs and buttons */
-  .edit-info input,
-  #print-btn,
-  #pdf-btn,
-  .print-button-container {
-    display: none !important;
-  }
-}
-
-/* Add a little margin between spans used in print mode */
-.print-span {
-  font-weight: bold;
-  font-family: Arial, sans-serif;
-}
-
 .header-logo {
   height: 120px;
   width: auto;
@@ -91,15 +65,24 @@ body {
   display: flex;
   align-items: center;
   gap: 6px;
-  min-width: 160px;
+  min-width: 150px;
 }
 .edit-info input[type="text"],
-.edit-info input[type="date"] {
+.edit-info input[type="date"],
+.edit-info select {
   padding: 4px 6px;
   font-size: 1em;
 }
 
-/* Info row below header */
+/* Buttons container */
+button {
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 1em;
+  margin: 0 6px;
+  padding: 6px 14px;
+}
+
 .timetable-header {
   text-align: center;
   font-size: 1.08em;
@@ -108,7 +91,26 @@ body {
   color: #333;
 }
 
-/* Table Styling */
+/* Page break styles for PDF/print */
+table,
+tr,
+td,
+th {
+  page-break-inside: avoid !important;
+  page-break-after: auto !important;
+  page-break-before: auto !important;
+}
+
+/* Container for PDF generation */
+#pdf-container {
+  max-width: 900px;
+  margin: 0 auto;
+  background: white;
+  font-family: Arial, sans-serif !important;
+  color: #222 !important;
+}
+
+/* Timetable table */
 table {
   width: 100%;
   border-collapse: collapse;
@@ -121,6 +123,7 @@ td {
   border: 1px solid #999;
   padding: 8px 5px;
   text-align: center;
+  word-wrap: break-word; /* Helps avoid overflow in PDF */
 }
 
 thead th {
@@ -151,6 +154,7 @@ select {
   padding: 2px 5px;
 }
 
+/* Course Details table */
 #course-details-table th,
 #course-details-table td {
   border: 1px solid #bbb;
@@ -184,7 +188,15 @@ select {
   gap: 24px;
   margin-bottom: 15px;
 }
+
+/* Combined print and PDF styles */
 @media print {
+  /* Hide inputs, selects, buttons & add/remove buttons during print/PDF */
+  .edit-info input,
+  .edit-info select,
+  #print-btn,
+  #pdf-btn,
+  .print-button-container,
   #course-details-table input,
   #cd-coordinator,
   #cd-hod,
@@ -192,13 +204,24 @@ select {
   #remove-row-cd {
     display: none !important;
   }
+  /* Show text spans in place of inputs */
   #course-details-table .cd-print-span,
   #cd-coordinator-span,
-  #cd-hod-span {
+  #cd-hod-span,
+  .print-span {
     display: inline !important;
+    font-weight: bold;
+    font-family: Arial, sans-serif;
   }
 }
 
+/* Print span styling */
+.print-span {
+  font-weight: bold;
+  font-family: Arial, sans-serif;
+}
+
+/* Responsive adjustments */
 @media (max-width: 900px) {
   body {
     margin: 10px;
@@ -224,5 +247,9 @@ select {
   td {
     font-size: 12px;
     padding: 4px 2px;
+  }
+  #course-details-wrapper input[type="text"],
+  #course-details-wrapper input[type="number"] {
+    width: 140px;
   }
 }
