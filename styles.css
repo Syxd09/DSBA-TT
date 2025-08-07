@@ -91,6 +91,11 @@ button {
   color: #333;
 }
 
+.timetable-header-row {
+  background: #005eca;
+  font-weight: bold;
+}
+
 /* Page break styles for PDF/print */
 table,
 tr,
@@ -103,7 +108,7 @@ th {
 
 /* Container for PDF generation */
 #pdf-container {
-  max-width: 900px;
+  max-width: 700px;
   margin: 0 auto;
   background: white;
   font-family: Arial, sans-serif !important;
@@ -123,7 +128,7 @@ td {
   border: 1px solid #999;
   padding: 8px 5px;
   text-align: center;
-  word-wrap: break-word; /* Helps avoid overflow in PDF */
+  word-wrap: break-word;
 }
 
 thead th {
@@ -227,7 +232,7 @@ select {
     margin: 10px;
   }
   .header-logo {
-    height: 40px;
+    height: 120px;
   }
   .dsi-title {
     font-size: 20px;
@@ -242,6 +247,11 @@ select {
     max-width: 100%;
     justify-content: flex-start;
   }
+
+  .timetable-header-row {
+   background-color: rgb(55, 130, 235);
+  }
+
   table,
   th,
   td {
