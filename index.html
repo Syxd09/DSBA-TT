@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <title>BCA Semester I Timetable - Editable</title>
+    <link rel="stylesheet" href="styles.css" />
+</head>
+
+<body>
+    <div class="dsba-header">
+        <img src="dsba-logo.png" alt="DSBA Logo" class="header-logo left-logo" />
+        <div class="header-center">
+            <div class="dsi-title">Dayananda Sagar Institutions (DSI)</div>
+            <div class="dsba-title">Dayananda Sagar Business Academy (DSBA)</div>
+            <div class="header-subtitle">
+                Recognised by the Government of Karnataka, Permanently Affiliated to Bangalore University &amp;<br />
+                Approved by A.I.C.T.E., Accredited by NAAC
+            </div>
+        </div>
+        <img src="iq-logo.jpg" alt="IQ Logo" class="header-logo right-logo" />
+    </div>
+
+    <div class="edit-info">
+        <label>
+            Program:
+            <input id="program-input" type="text" value="BCA" />
+        </label>
+        <label>
+            Semester:
+            <input id="semester-input" type="text" value="I" />
+        </label>
+        <label>
+            Batch:
+            <input id="batch-input" type="text" value="2025-28" />
+        </label>
+        <label>
+            Effective Date:
+            <input id="date-input" type="date" value="2025-07-30" />
+        </label>
+        <label>
+            Class Room:
+            <input id="classroom-input" type="text" value="103" />
+        </label>
+    </div>
+
+    <div style="text-align:center; margin-bottom:20px;">
+        <button id="print-btn" type="button">Print Timetable</button>
+        <button id="pdf-btn" type="button">Download as PDF</button>
+    </div>
+
+
+    <div class="timetable-header" id="timetable-header">
+        Program: BCA &nbsp;|&nbsp; Semester: I &nbsp;|&nbsp; Batch 2025-28 &nbsp;|&nbsp; ODD SEM - 2025-26 AY<br />
+        <strong id="effective-date-text">Revised Time Table - Effective from: 30/07/2025</strong>
+    </div>
+
+    <table id="timetable">
+        <thead>
+            <tr>
+                <th></th>
+                <th>9:30-10:25</th>
+                <th>10:25-10:40</th>
+                <th>10:40-10:50</th>
+                <th>10:50-11:45</th>
+                <th>11:50-12:45</th>
+                <th>12:45-1:30</th>
+                <th>1:30-2:25</th>
+                <th>2:30-3:25</th>
+                <th>3:30-4:25</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <th>Monday</th>
+                <td class="subject">PST</td>
+                <td rowspan="6" class="break">SDA<br /></td>
+                <td rowspan="6" class="break"><small>Small Break</small></td>
+                <td class="subject">CA</td>
+                <td class="subject">ENGLISH</td>
+                <td rowspan="6" class="break"><strong>LUNCH BREAK</strong></td>
+                <td class="subject">DS</td>
+                <td class="subject">K/S/H</td>
+                <td class="subject">EVS</td>
+            </tr>
+            <tr>
+                <th>Tuesday</th>
+                <td class="subject">PST</td>
+                <td class="subject">ENGLISH</td>
+                <td class="subject">EVS</td>
+                <td class="subject">CA</td>
+                <td class="subject">CA-LAB</td>
+                <td class="subject">CA-LAB</td>
+            </tr>
+            <tr>
+                <th>Wednesday</th>
+                <td class="subject">CA</td>
+                <td class="subject">PST</td>
+                <td class="subject">CA</td>
+                <td class="subject">PST</td>
+                <td class="subject">DST</td>
+                <td class="subject">K/S/H</td>
+            </tr>
+            <tr>
+                <th>Thursday</th>
+                <td class="subject">DST</td>
+                <td class="subject">ENGLISH</td>
+                <td class="subject">CA</td>
+                <td class="subject">CA-LAB</td>
+                <td class="subject">PST-LAB</td>
+                <td class="subject">Library/AE</td>
+            </tr>
+            <tr>
+                <th>Friday</th>
+                <td class="subject">OAT-LAB</td>
+                <td class="subject">OAT-LAB</td>
+                <td class="subject">PST-LAB</td>
+                <td class="subject">OAT-LAB</td>
+                <td class="subject">K/S/H</td>
+                <td class="subject">CLUB/AE</td>
+            </tr>
+            <tr>
+                <th>Saturday</th>
+                <td class="subject">K/S/H</td>
+                <td class="subject">Club/AE</td"></td>
+                <td class="subject">PST</td>
+                <td class="subject">Mentoring</td>
+                <td class="subject">Sports</td>
+                <td></td>
+            </tr>
+        </tbody>
+    </table>
+
+    <div id="course-details-wrapper">
+        <h3 style="text-align:center;">Course Details</h3>
+        <table id="course-details-table" style="margin: 0 auto; width: 100%; max-width: 1100px;">
+            <thead>
+                <tr>
+                    <th>Course Legend</th>
+                    <th>Course</th>
+                    <th>Faculty</th>
+                    <th>No. of Hrs/Week</th>
+                </tr>
+            </thead>
+            <tbody id="course-details-body">
+                <!-- Initial row -->
+                <tr>
+                    <td><input type="text" class="cd-input" placeholder="e.g. 24BCA11"></td>
+                    <td><input type="text" class="cd-input" placeholder="e.g. Discrete Structure"></td>
+                    <td><input type="text" class="cd-input" placeholder="e.g. Prof. Mallikarjuna B"></td>
+                    <td><input type="number" min="1" class="cd-input" placeholder="e.g. 4"></td>
+                </tr>
+            </tbody>
+        </table>
+        <div style="text-align:right; margin:8px 16px;">
+            <button id="add-row-cd" type="button">Add Row</button>
+            <button id="remove-row-cd" type="button">Remove Last Row</button>
+        </div>
+        <div class="flex-wrap" style="max-width:1100px; margin:0 auto;">
+            <label>
+                Class Coordinator:
+                <input id="cd-coordinator" type="text" value="">
+            </label>
+            <label>
+                HOD:
+                <input id="cd-hod" type="text" value="">
+            </label>
+            <label>
+                Principal:
+                <span id="cd-principal">Dr. NIKITHA SREEKANTHA SWAMY</span>
+            </label>
+        </div>
+    </div>
+
+
+    <p class="note">Class Room: 103</p>
+
+    <!-- Include html2pdf.js library from CDN (for PDF export) -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+
+    <script>
+        const subjects = [
+            "PST", "CA", "ENGLISH", "EVS", "DS", "K/S/H", "CA-LAB", "DST",
+            "PST-LAB", "OAT-LAB", "Club/AE", "Mentoring", "Sports", ""
+        ];
+
+        // Editable subjects dropdown on click
+        document.querySelectorAll('td.subject').forEach(cell => {
+            cell.style.cursor = "pointer";
+            cell.addEventListener('click', function () {
+                if (cell.querySelector('select')) return; // already editing
+
+                const current = cell.textContent.trim();
+
+                const select = document.createElement('select');
+
+                subjects.forEach(subj => {
+                    const option = document.createElement('option');
+                    option.value = subj;
+                    option.textContent = subj === "" ? "(None)" : subj;
+                    if (subj === current) option.selected = true;
+                    select.appendChild(option);
+                });
+
+                cell.textContent = '';
+                cell.appendChild(select);
+                select.focus();
+
+                function finishEdit() {
+                    const selected = select.value;
+                    cell.removeChild(select);
+                    cell.textContent = selected;
+                }
+
+                select.addEventListener('blur', finishEdit);
+                select.addEventListener('change', finishEdit);
+            });
+        });
+
+        const programInput = document.getElementById('program-input');
+        const semesterInput = document.getElementById('semester-input');
+        const batchInput = document.getElementById('batch-input');
+        const dateInput = document.getElementById('date-input');
+        const classroomInput = document.getElementById('classroom-input');
+
+        const timetableHeader = document.getElementById('timetable-header');
+
+        function formatDateForPrint(dateString) {
+            if (!dateString) return '';
+            const d = new Date(dateString);
+            if (isNaN(d)) return '';
+            return d.toLocaleDateString('en-GB');
+        }
+
+        function updateHeader() {
+            const formattedDate = formatDateForPrint(dateInput.value);
+
+            timetableHeader.innerHTML = `
+            Program: ${programInput.value || ''} &nbsp;|&nbsp; Semester: ${semesterInput.value || ''} &nbsp;|&nbsp; Batch: ${batchInput.value || ''} &nbsp;|&nbsp; ODD SEM - 2025-26 AY<br>
+            <strong>Revised Time Table - Effective from: ${formattedDate}</strong>
+        `;
+
+            document.querySelector('.note').textContent = `Class Room: ${classroomInput.value || ''}`;
+        }
+
+        [programInput, semesterInput, batchInput, dateInput, classroomInput].forEach(inputEl => {
+            inputEl.addEventListener('input', updateHeader);
+        });
+
+        // Initial update on load
+        updateHeader();
+
+        // Print button functionality
+        document.getElementById('print-btn').addEventListener('click', () => {
+            const editInfo = document.querySelector('.edit-info');
+
+            if (!editInfo.dataset.printMode) {
+                Array.from(editInfo.querySelectorAll('input')).forEach(input => {
+                    const span = document.createElement('span');
+                    span.textContent = input.type === 'date' ? formatDateForPrint(input.value) : input.value;
+                    span.classList.add('print-span');
+                    span.style.marginRight = '20px';
+                    input.style.display = 'none';
+                    input.parentNode.insertBefore(span, input);
+                });
+                editInfo.dataset.printMode = "true";
+            }
+
+            window.print();
+
+            window.onafterprint = () => {
+                if (editInfo.dataset.printMode) {
+                    Array.from(editInfo.querySelectorAll('span.print-span')).forEach(span => {
+                        span.previousElementSibling.style.display = '';
+                        span.remove();
+                    });
+                    delete editInfo.dataset.printMode;
+                }
+            };
+        });
+
+        // PDF Download functionality using html2pdf.js
+        document.getElementById('pdf-btn').addEventListener('click', () => {
+            const editInfo = document.querySelector('.edit-info');
+
+            // Temporarily hide inputs and buttons for PDF
+            const inputs = editInfo.querySelectorAll('input');
+            const printButton = document.getElementById('print-btn');
+            const pdfButton = document.getElementById('pdf-btn');
+
+            inputs.forEach(input => input.style.display = 'none');
+            printButton.style.display = 'none';
+            pdfButton.style.display = 'none';
+
+            // Insert spans to show values instead of inputs
+            inputs.forEach(input => {
+                const span = document.createElement('span');
+                span.textContent = input.type === 'date' ? formatDateForPrint(input.value) : input.value;
+                span.classList.add('print-span');
+                span.style.marginRight = '20px';
+                input.parentNode.insertBefore(span, input);
+            });
+
+            // Generate PDF from the body content (you may limit scope by an element ID if needed)
+            const element = document.body;
+            const opt = {
+                margin: 0.5,
+                filename: `BCA_Timetable_${new Date().toISOString().slice(0, 10)}.pdf`,
+                image: { type: 'jpeg', quality: 0.98 },
+                html2canvas: { scale: 2 },
+                jsPDF: { unit: 'in', format: 'a4', orientation: 'portrait' }
+            };
+
+            // Add/Remove functionality for Course Details
+            const courseDetailsBody = document.getElementById('course-details-body');
+            document.getElementById('add-row-cd').onclick = function () {
+                const row = document.createElement('tr');
+                row.innerHTML = `
+        <td><input type="text" class="cd-input" placeholder="e.g. 24BCA11"></td>
+        <td><input type="text" class="cd-input" placeholder="e.g. Discrete Structure"></td>
+        <td><input type="text" class="cd-input" placeholder="e.g. Prof. Mallikarjuna B"></td>
+        <td><input type="number" min="1" class="cd-input" placeholder="e.g. 4"></td>
+    `;
+                courseDetailsBody.appendChild(row);
+            };
+            document.getElementById('remove-row-cd').onclick = function () {
+                if (courseDetailsBody.rows.length > 1) courseDetailsBody.deleteRow(-1);
+            };
+
+            // Print/PDF support for Course Details section
+            function handleCourseDetailsPrintMode(enable) {
+                // Table
+                Array.from(courseDetailsBody.rows).forEach(r => {
+                    Array.from(r.cells).forEach((cell, idx) => {
+                        // Only if input present
+                        if (enable && cell.querySelector('input')) {
+                            const val = cell.querySelector('input').value;
+                            const span = document.createElement('span');
+                            span.className = 'cd-print-span';
+                            span.textContent = val;
+                            cell.appendChild(span);
+                            cell.querySelector('input').style.display = 'none';
+                        } else if (!enable) {
+                            const input = cell.querySelector('input');
+                            const span = cell.querySelector('span.cd-print-span');
+                            if (span) span.remove();
+                            if (input) input.style.display = '';
+                        }
+                    });
+                });
+                // Coordinator/HOD
+                const cdCoord = document.getElementById('cd-coordinator');
+                const cdHod = document.getElementById('cd-hod');
+                const insertSpan = (input, id) => {
+                    if (enable && !document.getElementById(id)) {
+                        const span = document.createElement('span');
+                        span.id = id;
+                        span.textContent = input.value;
+                        span.style.fontWeight = 'bold';
+                        span.style.marginLeft = '8px';
+                        input.style.display = 'none';
+                        input.parentNode.appendChild(span);
+                    } else if (!enable && document.getElementById(id)) {
+                        document.getElementById(id).remove();
+                        input.style.display = '';
+                    }
+                };
+                insertSpan(cdCoord, 'cd-coordinator-span');
+                insertSpan(cdHod, 'cd-hod-span');
+            }
+
+            // Enhance Print/PDF feature (assumes you have existing print function as previous)
+            const origPrintBtn = document.getElementById('print-btn');
+            if (origPrintBtn) {
+                const origPrintClick = origPrintBtn.onclick || (() => { }); // Backup any previous
+                origPrintBtn.onclick = function () {
+                    handleCourseDetailsPrintMode(true);
+                    if (typeof origPrintClick === 'function') origPrintClick();
+                    window.print();
+                    window.onafterprint = () => handleCourseDetailsPrintMode(false);
+                }
+            }
+            const pdfBtn = document.getElementById('pdf-btn');
+            if (pdfBtn) {
+                const origPdfClick = pdfBtn.onclick || (() => { });
+                pdfBtn.onclick = function () {
+                    handleCourseDetailsPrintMode(true);
+                    if (typeof origPdfClick === 'function') origPdfClick();
+                    // Call your existing html2pdf() logic here
+                    // After .then() or in setTimeout, restore:
+                    setTimeout(() => handleCourseDetailsPrintMode(false), 1200);
+                }
+            }
+
+
+            html2pdf().set(opt).from(element).save().then(() => {
+                // Cleanup after PDF generation
+                // Remove generated spans and show inputs/buttons again
+                Array.from(editInfo.querySelectorAll('span.print-span')).forEach(span => span.remove());
+                inputs.forEach(input => input.style.display = '');
+                printButton.style.display = '';
+                pdfButton.style.display = '';
+            });
+        });
+    </script>
+</body>
+
+</html>
