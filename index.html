@@ -61,7 +61,7 @@
     <!-- Buttons for print and PDF download -->
     <div style="text-align:center; margin-bottom:20px;">
         <button id="print-btn" type="button">Print Timetable</button>
-        <button id="pdf-btn" type="button">Download as PDF</button>
+        <!-- <button id="pdf-btn" type="button">Download as PDF</button> -->
     </div>
 
     <!-- Timetable header showing above the table -->
@@ -183,7 +183,7 @@
             </label>
             <label>
                 Principal:
-                <span id="cd-principal">Dr. NIKITHA SREEKANTHA SWAMY</span>
+                <span id="cd-principal">Dr. Nikitha Srekantha Swamy</span>
             </label>
         </div>
     </div>
@@ -268,10 +268,10 @@
         document.getElementById('add-row-cd').onclick = () => {
             const tr = document.createElement('tr');
             tr.innerHTML = `
-                <td><input type="text" class="cd-input" placeholder="e.g. 24BCA11" /></td>
-                <td><input type="text" class="cd-input" placeholder="e.g. Discrete Structure" /></td>
-                <td><input type="text" class="cd-input" placeholder="e.g. Prof. Mallikarjuna B" /></td>
-                <td><input type="number" min="1" class="cd-input" placeholder="e.g. 4" /></td>
+                <td><input type="text" class="cd-input" placeholder="Cousre code" /></td>
+                <td><input type="text" class="cd-input" placeholder="Subject name" /></td>
+                <td><input type="text" class="cd-input" placeholder="Faculty name" /></td>
+                <td><input type="number" min="1" class="cd-input" placeholder="Hours" /></td>
             `;
             courseDetailsBody.appendChild(tr);
         };
@@ -385,56 +385,8 @@
     // Replace course details inputs with spans for PDF
     handleCourseDetailsPrintMode(true);
 
-    // Wrap the content you want to print/download as PDF in a container div with id 'pdf-container'
-    // If not present, you can create one dynamically here or wrap manually in your HTML.
-    const pdfContainer = document.getElementById('pdf-container') || document.body;
+ });
 
-    // Apply styles for PDF rendering
-    pdfContainer.style.background = 'white';
-    pdfContainer.style.fontFamily = 'Arial, sans-serif';
-    pdfContainer.style.color = '#222';
-
-    // Add page break avoidance to tables to improve page breaks in PDF
-    const tables = pdfContainer.querySelectorAll('table');
-    tables.forEach(table => {
-        table.style.pageBreakInside = 'avoid';
-        table.style.pageBreakAfter = 'auto';
-        table.style.pageBreakBefore = 'auto';
-    });
-
-    const opt = {
-        margin: 0.2,
-        filename: `BCA_Timetable_${new Date().toISOString().slice(0, 10)}.pdf`,
-        image: { type: 'jpeg', quality: 0.98 },
-        html2canvas: { scale: 1, letterRendering: true, dpi: 100 },
-        jsPDF: { unit: 'in', format: 'a4', orientation: 'portrait' }
-    };
-
-    html2pdf()
-        .set(opt)
-        .from(pdfContainer)
-        .save()
-        .then(() => {
-            // Cleanup spans, restore inputs/selects/buttons
-            Array.from(editInfo.querySelectorAll('span.print-span')).forEach(span => span.remove());
-            inputs.forEach(input => (input.style.display = ''));
-            printButton.style.display = '';
-            pdfButton.style.display = '';
-            if (addRowBtn) addRowBtn.style.display = '';
-            if (removeRowBtn) removeRowBtn.style.display = '';
-            handleCourseDetailsPrintMode(false);
-
-            // Remove any inline styles applied to pdfContainer for PDF generation
-            pdfContainer.style.background = '';
-            pdfContainer.style.fontFamily = '';
-            pdfContainer.style.color = '';
-            tables.forEach(table => {
-                table.style.pageBreakInside = '';
-                table.style.pageBreakAfter = '';
-                table.style.pageBreakBefore = '';
-            });
-        });
-});
 
     </script>
 </body>
